@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Hero</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="game-container">
+        <div class="string" id="string1" data-letter="a"></div>
+        <div class="string" id="string2" data-letter="s"></div>
+        <div class="string" id="string3" data-letter="d"></div>
+        <div class="string" id="string4" data-letter="f"></div>
+        <div id="note-container">
+            <div id="note-a" class="note-box"></div>
+            <div id="note-s" class="note-box"></div>
+            <div id="note-d" class="note-box"></div>
+            <div id="note-f" class="note-box"></div>
+        </div>
+    </div>
+
+    
+    <button id="start-button">Start</button>
+    <button id="pause-button" disabled>Pause</button>
+    <audio id="stringa-sound" src="Benson Boone - Beautiful Things (Español + Lyrics) _ video musical.mp4"></audio>
+    <audio id="strings-sound" src="strings.mp3"></audio>
+    <audio id="stringd-sound" src="stringd.mp3"></audio>
+    <audio id="stringf-sound" src="stringf.mp3"></audio>
+
+    <script src="js/scrip.js"></script>
+</body>
+
+</html>
