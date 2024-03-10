@@ -11,6 +11,23 @@ body {
   background: linear-gradient(to bottom, #555, #111); /* Gradiente de fondo del juego */
 }
 
+#game-container {
+  background-image: url("../images/_b3520b66-ed62-4baa-a080-98b27508624c_out.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* Add other styles for the game container here */
+}
+
+#game-logo {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: auto;
+}
+
 .string {
   width: 50px;
   height: 400px;
