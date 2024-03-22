@@ -3,6 +3,7 @@ const startButton = document.getElementById('start-button');
 const pauseButton = document.getElementById('pause-button');
 const scoreElement = document.getElementById('score');
 const comboElement = document.getElementById('combo');
+const backgroundMusic = document.getElementById('background-music');
 
 const letters = ['a', 's', 'd', 'f'];
 let gameStarted = false;
@@ -24,12 +25,14 @@ function startGame() {
     updateCombo();
     generateRandomNotes();
     moveNotes();
+    backgroundMusic.play(); 
 }
 
 function pauseGame() {
     gameStarted = false;
     startButton.disabled = false;
     pauseButton.disabled = true;
+    backgroundMusic.pause();
 }
 
 function updateScore() {
