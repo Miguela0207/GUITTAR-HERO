@@ -1,21 +1,17 @@
 body {
   margin: 0;
   overflow: hidden;
+  background: linear-gradient(to bottom, #555, #111);
 }
-/* Estilos generales */
+
 #game-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to bottom, #555, #111); /* Gradiente de fondo del juego */
-}
-
-#game-container {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  /* Add other styles for the game container here */
 }
 
 #game-logo {
@@ -36,18 +32,15 @@ body {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  background-color: #444; /* Fondo oscuro para las cuerdas */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra sutil para las cuerdas */
+  background-color: #444;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-
 .button-container {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Ajusta el espacio entre los botones y la parte superior de la cuerda */
 }
 
 .string-button {
@@ -56,12 +49,13 @@ body {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Ajusta el espacio entre los botones */
   position: relative;
-  background-color: #ffcc00; /* Amarillo para los botones */
-  box-shadow: 0 4px 8px rgba(255, 255, 0, 0.8); /* Sombra suave para los botones */
-  transition: transform 0.2s ease-in-out; /* Animación de escala al presionar */
+  background-color: #ffcc00;
+  box-shadow: 0 4px 8px rgba(255, 255, 0, 0.8);
+  transition: transform 0.2s ease-in-out;
 }
+
 .string-button-pressed {
   transform: scale(0.9);
 }
@@ -69,23 +63,14 @@ body {
 .note {
   width: 20px;
   height: 20px;
-  background-color: #e74c3c; /* Rojo oscuro para las notas */
+  background-color: #e74c3c;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* Sombra sutil para las notas */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
 }
 
-
-/* Agrega un gradiente de fondo para el juego */
-body {
-  background: linear-gradient(to bottom, #555, #111);
-  margin: 0;
-  overflow: hidden;
-}
-
-/* Añade un estilo al contenedor de notas */
 #note-container {
   display: flex;
   justify-content: space-around;
@@ -93,45 +78,45 @@ body {
   height: 100%;
 }
 
-/* Agrega estilos al puntaje y al combo */
 #score,
-  #combo {
-    position: absolute;
-    color: #fff;
-    font-size: 24px;
-  }
-  
-  #score {
-    top: 20px;
-    left: 20px;
-  }
-  
-  #combo {
-    top: 20px;
-    right: 20px;
-  }
-  #start-button,
-  #pause-button {
-    width: 100px;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    transition: background-color 0.3s ease; /* Efecto de transición */
-  }
-  
-  #start-button {
-    background-color: #2ecc71; /* Verde claro para el botón de inicio */
-    margin-right: 10px;
-  }
-  
-  #pause-button {
-    background-color: #e74c3c; /* Rojo oscuro para el botón de pausa */
-  }
-  
-  #start-button:hover,
-  #pause-button:hover {
-    background-color: #34495e; /* Cambia el color al pasar el ratón */
-  }
+#combo {
+  position: absolute;
+  color: #fff;
+  font-size: 24px;
+}
+
+#score {
+  top: 20px;
+  left: 20px;
+}
+
+#combo {
+  top: 20px;
+  right: 20px;
+}
+
+#start-button,
+#pause-button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+#start-button {
+  background-color: #2ecc71;
+  margin-right: 10px;
+}
+
+#pause-button {
+  background-color: #e74c3c;
+}
+
+#start-button:hover,
+#pause-button:hover {
+  background-color: #34495e;
+}

@@ -14,7 +14,6 @@ pauseButton.addEventListener('click', pauseGame);
 
 const stringButtons = document.querySelectorAll('.string-button');
 
-// Modifica la función startGame para habilitar/deshabilitar los botones
 function startGame() {
     gameStarted = true;
     startButton.disabled = true;
@@ -33,7 +32,6 @@ function pauseGame() {
     pauseButton.disabled = true;
 }
 
-
 function updateScore() {
     scoreElement.textContent = `Score: ${score}`;
 }
@@ -43,14 +41,10 @@ function updateCombo() {
 }
 
 function calculatePoints(combo) {
-    // Puedes ajustar la lógica de puntuación según tus preferencias
     return combo * 10;
 }
 
-
-
 document.addEventListener('keydown', (event) => {
-    
     if (gameStarted) {
         const key = event.key.toLowerCase();
         const letterIndex = letters.indexOf(key);
@@ -59,7 +53,7 @@ document.addEventListener('keydown', (event) => {
             const string = strings[letterIndex];
             const note = string.querySelector('.note');
             const button = stringButtons[letterIndex];
-            console.log(getButtonPosition (button)) ;
+            const buttonPosition = getButtonPosition(button);
 
             if (note) {
                 const noteTop = parseInt(note.style.top || 0);
@@ -67,17 +61,17 @@ document.addEventListener('keydown', (event) => {
 
                 const buttonTop = button.offsetTop;
                 const buttonHeight = button.offsetHeight;
-                console.log("T ",buttonTop," H ",buttonHeight )
 
-                // Verifica si la nota está en la misma posición que el botón
+                // Define una tolerancia para la posición de la nota respecto al botón
+                const tolerance = 10; // Puedes ajustar este valor según tus necesidades
+
+                // Verifica si la nota está cerca del botón dentro de la tolerancia definida
                 if (
-                    (noteTop >= buttonTop && noteTop <= buttonTop + buttonHeight) ||
-                    (noteTop + noteHeight >= buttonTop && noteTop + noteHeight <= buttonTop + buttonHeight)
+                    (noteTop >= buttonTop - tolerance && noteTop <= buttonTop + buttonHeight + tolerance) ||
+                    (noteTop + noteHeight >= buttonTop - tolerance && noteTop + noteHeight <= buttonTop + buttonHeight + tolerance)
                 ) {
                     note.remove();
                     playSound(letterIndex);
-
-                    // Incrementa el puntaje y el combo
                     combo++;
                     score += calculatePoints(combo);
                     updateScore();
@@ -88,7 +82,6 @@ document.addEventListener('keydown', (event) => {
                 }
             }
 
-            // Agrega un estilo visual para indicar que se presionó la cuerda
             button.classList.add('string-button-pressed');
             setTimeout(() => {
                 button.classList.remove('string-button-pressed');
@@ -96,6 +89,7 @@ document.addEventListener('keydown', (event) => {
         }
     }
 });
+
 function generateRandomNotes() {
     setInterval(() => {
         if (gameStarted) {
@@ -108,10 +102,9 @@ function generateRandomNotes() {
             const randomColor = noteColors[letterIndex];
 
             note.style.backgroundColor = randomColor;
-            note.style.left = '50%';  // Centra la nota horizontalmente
-            note.style.transform = 'translateX(-50%)';  // Centra la nota horizontalmente
+            note.style.left = '50%';
+            note.style.transform = 'translateX(-50%)';
 
-            // Almacena la posición inicial y la altura de la nota
             const initialPosition = randomString.getBoundingClientRect().top;
             const noteHeight = note.clientHeight;
             note.dataset.initialPosition = initialPosition;
@@ -125,8 +118,8 @@ function generateRandomNotes() {
     }, 1000);
 }
 
-
 function moveNotes() {
+    const noteSpeed = 10; // Velocidad de movimiento de las notas
     setInterval(() => {
         if (gameStarted) {
             const notes = document.querySelectorAll('.note');
@@ -134,23 +127,20 @@ function moveNotes() {
                 const noteTop = parseInt(note.style.top || 0);
                 const noteBottom = noteTop + note.clientHeight;
                 const stringBottom = note.parentElement.clientHeight;
-  
+
                 if (noteBottom >= stringBottom) {
-                    // La nota colisiona con el final de la cuerda
                     note.remove();
-  
-                    // Reinicia el combo
                     combo = 0;
                     updateCombo();
                 } else {
-                    note.style.top = `${noteTop + 10}px`;
+                    // Asegurarse de que la nota se mueva hasta el fondo de la cuerda
+                    const newNoteTop = noteTop + noteSpeed;
+                    note.style.top = `${newNoteTop}px`;
                 }
             });
         }
     }, 100);
-  }
-  
-
+}
 function playSound(letterIndex) {
     const sound = document.getElementById(`string${letters[letterIndex]}-sound`);
     sound.currentTime = 0;
@@ -167,9 +157,3 @@ function getButtonPosition(button) {
     };
 }
 
-// Ejemplo de uso:
-const buttonElement = document.getElementById('tuBotonId'); // Reemplaza 'tuBotonId' con el ID real de tu botón
-const buttonPosition = getButtonPosition(buttonElement);
-
-console.log('Posición del botón - Parte Superior:', buttonPosition.top);
-console.log('Posición del botón - Parte Inferior:', buttonPosition.bottom);
